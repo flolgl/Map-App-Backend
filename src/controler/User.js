@@ -22,13 +22,28 @@ export const loginHandler = (req, res) => {
         updateUserToken(login, authToken, date, (err) => {
             if (err)
                 return res.status(404).send({message: 'Erreur token'})
-                
+            req.session.user={"login": login, "date": date, "token":authToken, loggedIn:true}
+            req.session.save()
+            //console.log(req.session)
+            //console.log(req.sessionID)
             res.status(200).send({"auth": authToken, message: "login done"})
                 
         });
 
     })
 
+}
+
+/**
+ * Méthode permettant de savoir si un user est connecté
+ * @param req La requête
+ * @param res La réponse
+ */
+export const isLoggedIn = (req, res) =>{
+    // console.log(req.sessionID)
+    // console.log(`Logged in ${req.session.user}`)
+    // console.log(req.session)
+    return req.session.user ? res.status(200).send({loggedIn : true, user: req.session.user}) : res.status(404).send({loggedIn : false})
 }
 
 
