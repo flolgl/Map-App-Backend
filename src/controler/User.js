@@ -9,17 +9,17 @@ export const loginHandler = (req, res) => {
     // TODO : vérfier en BDD
 
     //console.log(request.body)
-    const {email, password} = req.body;
+    const {login, password} = req.body;
     const date = Date.now();
-    //console.log(getHashedPassword(password))
+
 
     //if (users.find(user => user.email === email && user.password === getHashedPassword(password))) { // remplacer par une req bdd
-    findOneUtilisateurByEmailPSD([email, password], (err, data) => {
+    findOneUtilisateurByEmailPSD([login, getHashedPassword(password)], (err, data) => {
         if (err)
             return err.erreur === "not_found" ? res.status(404).send({message: 'Utilisateur non trouvé'}) : res.status(500).send({message: "Erreur"});
 
-        const authToken = getToken(email, date);
-        updateUserToken(email, authToken, date, (err) => {
+        const authToken = getToken(login, date);
+        updateUserToken(login, authToken, date, (err) => {
             if (err)
                 return res.status(404).send({message: 'Erreur token'})
                 

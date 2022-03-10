@@ -8,6 +8,7 @@ export const findOneUtilisateurByEmailPSD = (profil, cb) => {
     connection.query("SELECT login FROM utilisateur WHERE login = ? and password = ?;", profil, (err, rows) => {
         if (err) cb(err, null);
 
+        //console.log(rows)
         if (rows.length) {
             cb(null, rows[0]);
             return;
@@ -17,7 +18,7 @@ export const findOneUtilisateurByEmailPSD = (profil, cb) => {
 
 }
 
-export const updateUserToken = (email, token, timestamp) => {
+export const updateUserToken = (email, token, timestamp, cb) => {
     connection.query('UPDATE utilisateur SET token = ?, tokenTime = ? WHERE login = ?;', [token, timestamp, email], function (err, data) {
         if (err) cb(err);
         
