@@ -1,3 +1,5 @@
+import {getAllResto} from "../model/Meal.js";
+
 export const getMealsData = (req, res) =>{
     getAllResto((err, data)=>{
         if (err)

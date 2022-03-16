@@ -1,4 +1,4 @@
-import {connection} from "./Config.js"
+import {connection} from "./config/Config.js"
 
 export const getAllResto = (cb) => {
     connection.query("SELECT * FROM resto;", (err, rows) => {
