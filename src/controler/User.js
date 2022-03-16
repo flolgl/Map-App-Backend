@@ -16,17 +16,17 @@ export const loginHandler = (req, res) => {
     //if (users.find(user => user.email === email && user.password === getHashedPassword(password))) { // remplacer par une req bdd
     findOneUtilisateurByEmailPSD([login, getHashedPassword(password)], (err, data) => {
         if (err)
-            return err.erreur === "not_found" ? res.status(404).send({message: 'Utilisateur non trouvé'}) : res.status(500).send({message: "Erreur"});
+            return err.erreur === "not_found" ? res.status(404).send({err: 'Utilisateur non trouvé'}) : res.status(500).send({err: "Error"});
 
         const authToken = getToken(login, date);
         updateUserToken(login, authToken, date, (err) => {
             if (err)
-                return res.status(404).send({message: 'Erreur token'})
+                return res.status(404).send({err: 'Erreur token'})
             req.session.user={"login": login, "date": date, "token":authToken, loggedIn:true}
             req.session.save()
             //console.log(req.session)
             //console.log(req.sessionID)
-            res.status(200).send({"auth": authToken, message: "login done"})
+            res.status(200).send({"auth": authToken, message: "login done", err:null})
                 
         });
 
