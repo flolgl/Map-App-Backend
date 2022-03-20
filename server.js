@@ -10,14 +10,12 @@ import {addNewResto, getMealsData, voteForResto} from "./src/controler/Meal.js";
 
 const app = express()
 
-// TODO : A specifier pour pas rendre l'api publique
 app.use(cors({
     origin: "http://localhost:3000",
     methods: ["GET", "POST"],
     credentials: true
 }));
 
-// Si besoin d'explications, demandez moi
 app.use(json());
 app.use(urlencoded({extended: true}));
 app.use(cookieParser())
