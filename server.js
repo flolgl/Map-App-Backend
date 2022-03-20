@@ -6,7 +6,7 @@ import pkg from 'body-parser';
 const { json, urlencoded } = pkg;
 import cookieParser from "cookie-parser";
 import session from "express-session";
-import {getMealsData} from "./src/controler/Meal.js";
+import {addNewResto, getMealsData, voteForResto} from "./src/controler/Meal.js";
 
 const app = express()
 
@@ -35,5 +35,7 @@ app.listen(PORT, () => {
 })
 
 app.post("/login", loginHandler)
+app.post("/addRestaurant", addNewResto)
+app.post("/vote", voteForResto)
 app.get("/login", isLoggedIn)
 app.get("/getData", getMealsData)

@@ -5,7 +5,7 @@ import {connection} from "./config/Config.js"
  * @param cb {callback} traitement du résultat
  */
 export const findOneUtilisateurByEmailPSD = (profil, cb) => {
-    connection.query("SELECT login FROM utilisateur WHERE login = ? and password = ?;", profil, (err, rows) => {
+    connection.query("SELECT id, login FROM utilisateur WHERE login = ? and password = ?;", profil, (err, rows) => {
         if (err) cb(err, null);
 
         //console.log(rows)

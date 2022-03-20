@@ -22,7 +22,7 @@ export const loginHandler = (req, res) => {
         updateUserToken(login, authToken, date, (err) => {
             if (err)
                 return res.status(404).send({err: 'Erreur token'})
-            req.session.user={"login": login, "date": date, "token":authToken, loggedIn:true}
+            req.session.user={"login": login, "id": data.id, "date": date, "token":authToken, loggedIn:true}
             req.session.save()
             //console.log(req.session)
             //console.log(req.sessionID)
