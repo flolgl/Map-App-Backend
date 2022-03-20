@@ -17,7 +17,13 @@ export const findOneUtilisateurByEmailPSD = (profil, cb) => {
     });
 
 }
-
+/**
+ * Méthode permettant d'update le token d'un User
+ * @param email l'email du User
+ * @param token le nouveau token
+ * @param timestamp le timestamp de l'ajout
+ * @param cb Le callback acceptant 1 argument (erreur s'il y en a un ou null)
+ */
 export const updateUserToken = (email, token, timestamp, cb) => {
     connection.query('UPDATE utilisateur SET token = ?, tokenTime = ? WHERE login = ?;', [token, timestamp, email], function (err, data) {
         if (err) cb(err);

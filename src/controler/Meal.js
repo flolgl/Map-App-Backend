@@ -1,5 +1,10 @@
 import {addResto, getAllResto, vote} from "../model/Meal.js";
 
+/**
+ * Controller permettant de récupérer les données des restaurants
+ * @param req Request représentant la requête
+ * @param res La réponse : 200 quand c'est good - 404 ou 500 sinon
+ */
 export const getMealsData = (req, res) =>{
     getAllResto((err, data)=>{
         if (err)
@@ -9,6 +14,11 @@ export const getMealsData = (req, res) =>{
     })
 }
 
+/**
+ * Controller permettant de récupérer les données des restaurants
+ * @param req Request représentant la requête
+ * @param res La réponse : 200 quand c'est good - 404 ou 500 sinon
+ */
 export const addNewResto = (req, res) => {
 
     if(!req.session.user)
@@ -25,6 +35,11 @@ export const addNewResto = (req, res) => {
 
 }
 
+/**
+ * Controller permettant de voter pour un restaurant
+ * @param req Request représentant la requête
+ * @param res La réponse : 200 quand c'est good - 404 ou 500 sinon
+ */
 export const voteForResto = (req, res) => {
 
     if(!req.session.user)
